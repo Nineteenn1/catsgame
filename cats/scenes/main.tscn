@@ -7,20 +7,21 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="cat" type="CharacterBody2D" parent="."]
+position = Vector2(54, 34)
 script = ExtResource("1_mi3io")
 
 [node name="Sprite2D" type="Sprite2D" parent="cat"]
-position = Vector2(655, 281)
+position = Vector2(0, 1)
 texture = ExtResource("2_8qjsf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cat"]
 
 [node name="rat" type="CharacterBody2D" parent="."]
-position = Vector2(619, 348)
+position = Vector2(614, 385)
 script = ExtResource("3_74ry7")
 
 [node name="Sprite2D" type="Sprite2D" parent="rat"]
-position = Vector2(-389, -137)
+position = Vector2(2, -7)
 texture = ExtResource("2_8qjsf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rat"]
