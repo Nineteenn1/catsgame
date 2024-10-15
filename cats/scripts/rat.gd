@@ -16,6 +16,7 @@ func takeDamage(damage: int):
 func die():
 	# particle animation
 	queue_free()
+	get_parent().remove_child(self)
 	pass
 
 func _process(delta: float) -> void:
@@ -25,11 +26,16 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	velocity = global_position.direction_to(cat_position) * SPEED
 		
-	print("cat pos: " + str(cat_position.x) + ", " + str(cat_position.y)) 	
-	print("rat pos: " + str(position.x) + ", " + str(position.y)) 	
+	
 		
 	if health == 0:
 		die()
 	
 	#if not (position == cat_position):
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+#	if body.name == "Bullet":
+	takeDamage(20)
+	print(health)
