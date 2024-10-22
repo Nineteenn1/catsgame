@@ -12,6 +12,12 @@ var health = 100
 
 func takeDamage(damage: int):
 	health -= damage
+	$CanvasLayer/TextureProgressBar.value = health
+
+
+func _ready():
+		$CanvasLayer/TextureProgressBar.value = health
+
 
 func die():
 	# particle animation
@@ -23,13 +29,15 @@ func _process(delta: float) -> void:
 	cat_position = cat_node.get("position")
 	cat_velocity = cat_node.get("velocity")
 
-func _physics_process(delta: float) -> void:
-	velocity = global_position.direction_to(cat_position) * SPEED
-		
+	$CanvasLayer/TextureProgressBar.position = Vector2(position.x - 65, position.y - 150)
 	
-		
+
 	if health == 0:
 		die()
+
+func _physics_process(delta: float) -> void:
+	velocity = global_position.direction_to(cat_position) * SPEED
+	
 	
 	#if not (position == cat_position):
 	move_and_slide()
@@ -39,3 +47,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 #	if body.name == "Bullet":
 	takeDamage(20)
 	print(health)
+	$CanvasLayer/TextureProgressBar.value = health

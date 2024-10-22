@@ -1,17 +1,17 @@
-1. scena szczura
+1. scena szczura 
 2. spawn
-3. scena bullet
-4. strzelanie
+3. scena bullet w
+4. strzelanie w
 5. get cursor direction
-6. get_direction_to()
-7. leci
-8. on_collision:
+6. get_direction_to() w
+7. leci w 
+8. on_collision: ws
 	if szczur:
 		takedamage(x)
 		
-9. if szczur.health == 0:
+9. if szczur.health == 0: w
 	destroy()
-10. cat.money
+10. cat.money 
 11. buy()
 12. wear()
 13. if cos tam:

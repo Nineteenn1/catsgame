@@ -42,7 +42,8 @@ func _input(e: InputEvent) -> void:
 		bullet = bullet_scene.instantiate()
 		get_parent().add_child(bullet)
 		bullet.position = position
-		
+		print(position)
+		print(position*2)
 		# on collision
 		# health bar
 
@@ -52,4 +53,10 @@ func _input(e: InputEvent) -> void:
 	if e is InputEventMouseButton:
 		print("Mouse Click/Unclick at: ", e.position)
 		bullet.mouse_position = e.position #+ abs(e.position - position)
-		
+
+		#bullet.mouse_position += Vector2(sqrt(bullet.mouse_position.x * bullet.mouse_position.x),
+		#sqrt(bullet.mouse_position.y * bullet.mouse_position.y))
+
+		#var bullet.mouse_position 
+	#	bullet.direction.x = 
+		#bullet.direction.y = 

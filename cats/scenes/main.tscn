@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://igp5jqddcu7p"]
+[gd_scene load_steps=7 format=3 uid="uid://igp5jqddcu7p"]
 
 [ext_resource type="Script" path="res://scripts/cat.gd" id="1_mi3io"]
 [ext_resource type="Texture2D" uid="uid://dvktunpm3xy3n" path="res://icon.svg" id="2_8qjsf"]
 [ext_resource type="Script" path="res://scripts/rat.gd" id="3_74ry7"]
+[ext_resource type="Texture2D" uid="uid://beehb47sfkx3d" path="res://gfx/bar_under.png" id="4_f1qjv"]
+[ext_resource type="Texture2D" uid="uid://vnfcg2sr53xk" path="res://gfx/progress.png" id="5_k1yca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kepou"]
 size = Vector2(126, 128)
@@ -14,7 +16,7 @@ position = Vector2(54, 34)
 script = ExtResource("1_mi3io")
 
 [node name="Sprite2D" type="Sprite2D" parent="cat"]
-position = Vector2(0, 1)
+position = Vector2(24, 15)
 texture = ExtResource("2_8qjsf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cat"]
@@ -36,5 +38,17 @@ texture = ExtResource("2_8qjsf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rat/Area2D"]
 position = Vector2(2, -7)
 shape = SubResource("RectangleShape2D_kepou")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="rat"]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="rat/CanvasLayer"]
+offset_left = 550.0
+offset_top = 240.0
+offset_right = 678.0
+offset_bottom = 368.0
+step = 20.0
+value = 100.0
+texture_under = ExtResource("4_f1qjv")
+texture_progress = ExtResource("5_k1yca")
 
 [connection signal="body_entered" from="rat/Area2D" to="rat" method="_on_area_2d_body_entered"]
