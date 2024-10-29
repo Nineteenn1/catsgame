@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 200.0
 
 var health = 100
+var name_index = 1
 
 @onready var cat_node = get_parent().get_node("cat")
 
@@ -44,7 +45,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-#	if body.name == "Bullet":
-	takeDamage(20)
-	print(health)
-	$CanvasLayer/TextureProgressBar.value = health
+	print(body.name)
+	if (body.name == "Bullet") or (body.name == "@CharacterBody2D@" + str(name_index)):
+		takeDamage(20)
+		print(health)
+		$CanvasLayer/TextureProgressBar.value = health
+		body.visible = false
+		body.queue_free()
+		name_index += 1
