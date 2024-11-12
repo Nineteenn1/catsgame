@@ -54,6 +54,11 @@ shape = SubResource("RectangleShape2D_gda02")
 visible = false
 points = PackedVector2Array(-1, 0)
 
+[node name="global_timer" type="Timer" parent="cat"]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
 [node name="rat" type="CharacterBody2D" parent="."]
 position = Vector2(614, 385)
 script = ExtResource("3_74ry7")
@@ -75,7 +80,6 @@ shape = SubResource("CapsuleShape2D_pmtmo")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="rat/Area2D/CollisionShape2D"]
 position = Vector2(48.0719, 22.4103)
 rotation = 0.652608
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yqi41")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="rat"]
@@ -122,5 +126,12 @@ shape = SubResource("RectangleShape2D_8tkhm")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(1228, 776.5)
 shape = SubResource("RectangleShape2D_uq4ii")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -493.0
+offset_top = 305.0
+offset_right = -401.0
+offset_bottom = 328.0
+text = "Kocham cię"
 
 [connection signal="body_entered" from="rat/Area2D" to="rat" method="_on_area_2d_body_entered"]

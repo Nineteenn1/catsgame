@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6yiropuvfbyb"]
+
+[ext_resource type="Texture2D" uid="uid://bh6p5mbpuv78o" path="res://gfx/mainmenu.png" id="1_qna3t"]
+
+[node name="Mainmenu" type="Node2D"]
+
+[node name="Mainmenu" type="Sprite2D" parent="."]
+position = Vector2(515, 512)
+scale = Vector2(2, 2)
+texture = ExtResource("1_qna3t")

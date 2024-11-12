@@ -12,6 +12,7 @@ var line_point = 0
 var bullet = null
 
 var bullet_direction = Vector2(0,0)
+	
 
 func _physics_process(delta: float) -> void:
 
@@ -30,8 +31,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		
-	print(position)	
-	
+	$Sprite2D.flip_h = not velocity.x > 0			
 	move_and_slide()
 
 
@@ -42,10 +42,13 @@ func _physics_process(delta: float) -> void:
 func _input(e: InputEvent) -> void:
 	if Input.is_action_just_pressed("SHOOT"):
 		bullet = bullet_scene.instantiate()
-		get_parent().add_child(bullet)
-		bullet.position = position
-		print(position)
-		print(position*2)
+		print($global_timer.time_left)
+		if not bullet.shoot and $global_timer.time_left <=0: 
+			bullet.shoot = true
+			get_parent().add_child(bullet)
+			bullet.position = position
+			print("start")
+			$global_timer.start()
 		# on collision
 		# health bar
 
@@ -55,6 +58,8 @@ func _input(e: InputEvent) -> void:
 	if e is InputEventMouseButton:
 		print("Mouse Click/Unclick at: ", e.position)
 		bullet.mouse_position = e.position #+ abs(e.position - position)
+		#play anim then q free
+
 
 		#bullet.mouse_position += Vector2(sqrt(bullet.mouse_position.x * bullet.mouse_position.x),
 		#sqrt(bullet.mouse_position.y * bullet.mouse_position.y))
