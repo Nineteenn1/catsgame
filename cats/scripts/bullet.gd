@@ -21,6 +21,8 @@ func _physics_process(delta: float) -> void:
 	if position == mouse_position or velocity == Vector2(0, 0) : #use timer here to make it work on close ditance
 		#area2d for collision detection with walls and stuff
 		#play anim and q free
+		#await get_tree().create_timer(3).timeout
+		#print("died out of diedness")
 		get_parent().remove_child(self)
 		queue_free()
 

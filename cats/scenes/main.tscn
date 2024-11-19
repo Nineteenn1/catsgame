@@ -1,22 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://igp5jqddcu7p"]
+[gd_scene load_steps=17 format=3 uid="uid://igp5jqddcu7p"]
 
 [ext_resource type="Script" path="res://scripts/cat.gd" id="1_mi3io"]
 [ext_resource type="Texture2D" uid="uid://cu7bpg86728b7" path="res://gfx/pickedMedia1.png" id="2_qvrcu"]
-[ext_resource type="Script" path="res://scripts/rat.gd" id="3_74ry7"]
-[ext_resource type="Texture2D" uid="uid://ch6jvrg3q265m" path="res://gfx/pickedMedia5.png" id="4_bftxc"]
-[ext_resource type="Texture2D" uid="uid://beehb47sfkx3d" path="res://gfx/bar_under.png" id="4_f1qjv"]
-[ext_resource type="Texture2D" uid="uid://vnfcg2sr53xk" path="res://gfx/progress.png" id="5_k1yca"]
+[ext_resource type="PackedScene" uid="uid://dkxv35ywvf6jh" path="res://scenes/rat.tscn" id="3_rm5ar"]
+[ext_resource type="Script" path="res://scripts/itemshop.gd" id="5_5udvn"]
+[ext_resource type="Texture2D" uid="uid://dvktunpm3xy3n" path="res://icon.svg" id="6_ux2v0"]
+[ext_resource type="Texture2D" uid="uid://41xmlhj0pbss" path="res://gfx/menu.png" id="7_14mi1"]
 [ext_resource type="Texture2D" uid="uid://b5k4cibjlhlkr" path="res://gfx/bg.png" id="7_pqkms"]
+[ext_resource type="Texture2D" uid="uid://br5lsqqdfpixk" path="res://gfx/ribbon.png" id="8_27278"]
+[ext_resource type="Texture2D" uid="uid://q4h824coct50" path="res://gfx/glasses.png" id="9_6wyl3"]
+[ext_resource type="Texture2D" uid="uid://53i2v4xrrqsm" path="res://gfx/lights.png" id="10_3l418"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gda02"]
 size = Vector2(148, 196)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pmtmo"]
-radius = 37.0
-height = 128.109
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqi41"]
-size = Vector2(24.0802, 56.4608)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmk6t"]
 size = Vector2(509, 196.5)
@@ -37,17 +33,17 @@ size = Vector2(1088, 81)
 
 [node name="cat" type="CharacterBody2D" parent="."]
 z_index = 1
-position = Vector2(196, 591)
+position = Vector2(207, 893)
 script = ExtResource("1_mi3io")
 
 [node name="Sprite2D" type="Sprite2D" parent="cat"]
 z_index = 1
-position = Vector2(-10.5, 71.5)
+position = Vector2(15.6, -5)
 scale = Vector2(0.95, 0.95)
 texture = ExtResource("2_qvrcu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cat"]
-position = Vector2(-26, 77)
+position = Vector2(0.0999985, 0.5)
 shape = SubResource("RectangleShape2D_gda02")
 
 [node name="Line2D" type="Line2D" parent="cat"]
@@ -59,40 +55,11 @@ wait_time = 0.4
 one_shot = true
 autostart = true
 
-[node name="rat" type="CharacterBody2D" parent="."]
-position = Vector2(614, 385)
-script = ExtResource("3_74ry7")
+[node name="rat_spawn_timer" type="Timer" parent="cat"]
+wait_time = 5.0
+autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="rat"]
-z_index = 1
-position = Vector2(2, -7)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_bftxc")
-
-[node name="Area2D" type="Area2D" parent="rat"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="rat/Area2D"]
-z_index = 1
-position = Vector2(0, 3)
-rotation = -1.32388
-shape = SubResource("CapsuleShape2D_pmtmo")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="rat/Area2D/CollisionShape2D"]
-position = Vector2(48.0719, 22.4103)
-rotation = 0.652608
-shape = SubResource("RectangleShape2D_yqi41")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="rat"]
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="rat/CanvasLayer"]
-offset_left = 550.0
-offset_top = 240.0
-offset_right = 678.0
-offset_bottom = 368.0
-step = 20.0
-value = 100.0
-texture_under = ExtResource("4_f1qjv")
-texture_progress = ExtResource("5_k1yca")
+[node name="rat" parent="." instance=ExtResource("3_rm5ar")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -134,4 +101,49 @@ offset_right = -401.0
 offset_bottom = 328.0
 text = "Kocham cię"
 
-[connection signal="body_entered" from="rat/Area2D" to="rat" method="_on_area_2d_body_entered"]
+[node name="itemshop" type="Node2D" parent="."]
+script = ExtResource("5_5udvn")
+
+[node name="open" type="TextureButton" parent="itemshop"]
+offset_left = 898.0
+offset_top = 893.0
+offset_right = 1026.0
+offset_bottom = 1021.0
+texture_normal = ExtResource("6_ux2v0")
+
+[node name="menu" type="Sprite2D" parent="itemshop"]
+z_index = 10
+position = Vector2(511, 507)
+texture = ExtResource("7_14mi1")
+
+[node name="close" type="TextureButton" parent="itemshop/menu"]
+offset_left = 387.0
+offset_top = -507.0
+offset_right = 515.0
+offset_bottom = -379.0
+texture_normal = ExtResource("6_ux2v0")
+
+[node name="Ribbon" type="Sprite2D" parent="itemshop"]
+position = Vector2(150, 406)
+texture = ExtResource("8_27278")
+
+[node name="Ribbon" type="Sprite2D" parent="."]
+z_index = 11
+position = Vector2(101, 587)
+texture = ExtResource("8_27278")
+
+[node name="Ribbon2" type="Sprite2D" parent="."]
+z_index = 11
+position = Vector2(357, 535)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("9_6wyl3")
+
+[node name="Ribbon3" type="Sprite2D" parent="."]
+z_index = 11
+position = Vector2(700, 516)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_3l418")
+
+[connection signal="timeout" from="cat/rat_spawn_timer" to="cat" method="_on_rat_spawn_timer_timeout"]
+[connection signal="pressed" from="itemshop/open" to="itemshop" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="itemshop/menu/close" to="itemshop" method="close_pressed"]

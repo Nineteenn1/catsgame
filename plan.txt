@@ -22,3 +22,8 @@
 17 p.lay animation
 18. if distance <>= 
 19. ai
+
+szczur resp
+atak
+animacja
+

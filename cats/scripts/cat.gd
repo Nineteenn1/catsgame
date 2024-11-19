@@ -8,11 +8,15 @@ var line_point = 0
 
 @onready var rat_node = get_parent().get_node("rat")
 @onready var bullet_scene = load("res://scenes/bullet.tscn")
+@onready var rat_scene = load("res://scenes/rat.tscn")
 
 var bullet = null
 
 var bullet_direction = Vector2(0,0)
 	
+var bullet_mouse_position_copy
+
+var money = 0
 
 func _physics_process(delta: float) -> void:
 
@@ -40,6 +44,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(e: InputEvent) -> void:
+	if e is InputEventMouseButton:
+		print("Mouse Click/Unclick at: ", e.position)
+		bullet_mouse_position_copy = e.position
+		#play anim then q free
 	if Input.is_action_just_pressed("SHOOT"):
 		bullet = bullet_scene.instantiate()
 		print($global_timer.time_left)
@@ -48,6 +56,7 @@ func _input(e: InputEvent) -> void:
 			get_parent().add_child(bullet)
 			bullet.position = position
 			print("start")
+			bullet.mouse_position = bullet_mouse_position_copy
 			$global_timer.start()
 		# on collision
 		# health bar
@@ -55,10 +64,6 @@ func _input(e: InputEvent) -> void:
 			
 		#bullet cooldown!!
 			
-	if e is InputEventMouseButton:
-		print("Mouse Click/Unclick at: ", e.position)
-		bullet.mouse_position = e.position #+ abs(e.position - position)
-		#play anim then q free
 
 
 		#bullet.mouse_position += Vector2(sqrt(bullet.mouse_position.x * bullet.mouse_position.x),
@@ -67,3 +72,10 @@ func _input(e: InputEvent) -> void:
 		#var bullet.mouse_position 
 	#	bullet.direction.x = 
 		#bullet.direction.y = 
+		
+		#add manager
+
+
+func _on_rat_spawn_timer_timeout() -> void:
+	var rat = rat_scene.instantiate()
+	get_parent().add_child(rat)
