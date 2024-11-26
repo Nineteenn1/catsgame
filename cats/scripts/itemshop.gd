@@ -1,5 +1,6 @@
 extends Node2D
 
+var money = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,11 +11,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_texture_button_pressed() -> void:
-	$menu.set_visible(1)
-
+	set_visible(1)
+	get_parent().get_node("open").set_visible(0)
+	$money.text = "Balance: {money}$".format({"money": money})
 
 func close_pressed() -> void:
-	$menu.set_visible(0)
-	
+	set_visible(0)
+	get_parent().get_node("open").set_visible(1)

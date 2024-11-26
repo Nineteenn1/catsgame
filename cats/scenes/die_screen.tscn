@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://biwc2ya06dnxq"]
+
+[ext_resource type="Script" path="res://scenes/Die_screen.gd" id="1_4kkh4"]
+
+[node name="DieScreen" type="Node2D"]
+script = ExtResource("1_4kkh4")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 411.0
+offset_top = 336.0
+offset_right = 585.0
+offset_bottom = 385.0
+theme_override_font_sizes/font_size = 35
+text = "you died..."
+
+[node name="retry" type="Button" parent="."]
+offset_left = 428.0
+offset_top = 423.0
+offset_right = 574.0
+offset_bottom = 495.0
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 46
+text = "RETRY"
+
+[connection signal="pressed" from="retry" to="." method="_on_retry_pressed"]

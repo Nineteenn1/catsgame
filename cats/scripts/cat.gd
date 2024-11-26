@@ -16,7 +16,20 @@ var bullet_direction = Vector2(0,0)
 	
 var bullet_mouse_position_copy
 
-var money = 0
+var health = 100
+
+func wear() -> void:
+	pass
+	
+func takeDamage(damage: int):
+	health -= damage
+
+func _process(delta: float) -> void:
+	if health == 0:
+		die()
+	
+func die() -> void:
+	get_tree().change_scene_to_file("res://scenes/die_screen.tscn")
 
 func _physics_process(delta: float) -> void:
 
@@ -45,22 +58,23 @@ func _physics_process(delta: float) -> void:
 
 func _input(e: InputEvent) -> void:
 	if e is InputEventMouseButton:
-		print("Mouse Click/Unclick at: ", e.position)
+		#print("Mouse Click/Unclick at: ", e.position)
 		bullet_mouse_position_copy = e.position
 		#play anim then q free
 	if Input.is_action_just_pressed("SHOOT"):
 		bullet = bullet_scene.instantiate()
-		print($global_timer.time_left)
+		#print($global_timer.time_left)
 		if not bullet.shoot and $global_timer.time_left <=0: 
 			bullet.shoot = true
 			get_parent().add_child(bullet)
 			bullet.position = position
-			print("start")
+			#print("start")
 			bullet.mouse_position = bullet_mouse_position_copy
 			$global_timer.start()
 		# on collision
 		# health bar
 
+		
 			
 		#bullet cooldown!!
 			

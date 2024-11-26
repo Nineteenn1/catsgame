@@ -56,8 +56,10 @@ one_shot = true
 autostart = true
 
 [node name="rat_spawn_timer" type="Timer" parent="cat"]
-wait_time = 5.0
+wait_time = 3.314
 autostart = true
+
+[node name="Area2D" type="Area2D" parent="cat"]
 
 [node name="rat" parent="." instance=ExtResource("3_rm5ar")]
 
@@ -102,14 +104,8 @@ offset_bottom = 328.0
 text = "Kocham cię"
 
 [node name="itemshop" type="Node2D" parent="."]
+visible = false
 script = ExtResource("5_5udvn")
-
-[node name="open" type="TextureButton" parent="itemshop"]
-offset_left = 898.0
-offset_top = 893.0
-offset_right = 1026.0
-offset_bottom = 1021.0
-texture_normal = ExtResource("6_ux2v0")
 
 [node name="menu" type="Sprite2D" parent="itemshop"]
 z_index = 10
@@ -123,27 +119,41 @@ offset_right = 515.0
 offset_bottom = -379.0
 texture_normal = ExtResource("6_ux2v0")
 
-[node name="Ribbon" type="Sprite2D" parent="itemshop"]
-position = Vector2(150, 406)
-texture = ExtResource("8_27278")
-
-[node name="Ribbon" type="Sprite2D" parent="."]
+[node name="Ribbon2" type="Sprite2D" parent="itemshop"]
+visible = false
 z_index = 11
 position = Vector2(101, 587)
 texture = ExtResource("8_27278")
 
-[node name="Ribbon2" type="Sprite2D" parent="."]
+[node name="Ribbon3" type="Sprite2D" parent="itemshop"]
+visible = false
 z_index = 11
 position = Vector2(357, 535)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("9_6wyl3")
 
-[node name="Ribbon3" type="Sprite2D" parent="."]
+[node name="Ribbon4" type="Sprite2D" parent="itemshop"]
+visible = false
 z_index = 11
 position = Vector2(700, 516)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_3l418")
 
+[node name="money" type="Label" parent="itemshop"]
+z_index = 100
+offset_left = 79.0
+offset_top = 285.0
+offset_right = 167.0
+offset_bottom = 308.0
+text = "Balance: x$"
+
+[node name="open" type="TextureButton" parent="."]
+offset_left = 898.0
+offset_top = 893.0
+offset_right = 1026.0
+offset_bottom = 1021.0
+texture_normal = ExtResource("6_ux2v0")
+
 [connection signal="timeout" from="cat/rat_spawn_timer" to="cat" method="_on_rat_spawn_timer_timeout"]
-[connection signal="pressed" from="itemshop/open" to="itemshop" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="itemshop/menu/close" to="itemshop" method="close_pressed"]
+[connection signal="pressed" from="open" to="itemshop" method="_on_texture_button_pressed"]

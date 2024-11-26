@@ -9,10 +9,9 @@ var shoot = false
 
 #func _process(delta: float) -> void:
 
-
+#make bullet go thru
 	
 func _on_timer_timeout() -> void:
-	print("signal")
 	queue_free()
 
 func _physics_process(delta: float) -> void:

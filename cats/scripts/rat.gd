@@ -11,11 +11,21 @@ var name_index = 1
 @onready var cat_position = cat_node.get("position")
 @onready var cat_velocity = cat_node.get("velocity")
 
-var entities = []
+var money = 0
+
+
+func attack(entity, damage: int):
+		if entity in $Area2D.get_overlapping_bodies() or entity in $Area2D.get_overlapping_areas():
+			entity.takeDamage(damage)
+			print("cat ded!!!")
+
 
 func takeDamage(damage: int):
 	health -= damage
 	$CanvasLayer/TextureProgressBar.value = health
+
+
+
 
 
 #func _ready():
@@ -32,8 +42,15 @@ func takeDamage(damage: int):
 func die():
 	# particle animation
 	#await get_tree().create_timer(1).timeout
+	
+	get_parent().get_node("itemshop").money += 10
+	print(get_parent().get_node("itemshop").money)
+	
+	
 	queue_free()
 	get_parent().remove_child(self)
+	
+	
 	pass
 
 func _process(delta: float) -> void:
@@ -42,6 +59,7 @@ func _process(delta: float) -> void:
 
 	$CanvasLayer/TextureProgressBar.position = Vector2(position.x - 65, position.y - 150)
 
+	attack(cat_node, 10)
 	
 	#removeEntities()
 
@@ -61,14 +79,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print(area.name)
 	if (area.name == "Area2D") or (area.name == "@CharacterBody2D@" + str(name_index)):
 		takeDamage(20)
-		print(health)
 		$CanvasLayer/TextureProgressBar.value = health
 		area.visible = false
 		#await get_tree().create_timer(1).timeout
-		print("died out of diedness")
 		area.queue_free()
-		entities.append(area)
 		name_index += 1
