@@ -6,6 +6,8 @@ const SPEED = 200.0
 var health = 100
 var name_index = 1
 
+@onready var area = get_node("Area2D")
+
 @onready var cat_node = get_parent().get_node("cat")
 
 @onready var cat_position = cat_node.get("position")
@@ -13,12 +15,16 @@ var name_index = 1
 
 var money = 0
 
+var attack_timeout = true
 
 func attack(entity, damage: int):
-		if entity in $Area2D.get_overlapping_bodies() or entity in $Area2D.get_overlapping_areas():
-			entity.takeDamage(damage)
-			print("cat ded!!!")
-
+	if area != null:
+		if entity in area.get_overlapping_bodies() and entity.is_inside_tree():	
+			if 	attack_timeout == true: #timer.time_left == 0 // so that the cat is not dead in a millisecond after the rat getting close
+				entity.takeDamage(damage)
+				print("cat ded!!!")
+				$Timer.start()
+				attack_timeout = false
 
 func takeDamage(damage: int):
 	health -= damage
@@ -47,7 +53,7 @@ func die():
 	print(get_parent().get_node("itemshop").money)
 	
 	
-	queue_free()
+	#queue_free()
 	get_parent().remove_child(self)
 	
 	
@@ -59,7 +65,7 @@ func _process(delta: float) -> void:
 
 	$CanvasLayer/TextureProgressBar.position = Vector2(position.x - 65, position.y - 150)
 
-	attack(cat_node, 10)
+	attack(cat_node, 20)
 	
 	#removeEntities()
 
@@ -86,3 +92,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		#await get_tree().create_timer(1).timeout
 		area.queue_free()
 		name_index += 1
+
+
+func _on_timer_timeout() -> void:
+	attack_timeout = true

@@ -23,7 +23,7 @@ shape = SubResource("RectangleShape2D_oj6qx")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 3.942
+wait_time = 1.989
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

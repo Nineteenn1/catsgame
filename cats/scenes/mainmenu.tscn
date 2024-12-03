@@ -1,10 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6yiropuvfbyb"]
+[gd_scene load_steps=3 format=3 uid="uid://b6yiropuvfbyb"]
 
+[ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_g4udk"]
 [ext_resource type="Texture2D" uid="uid://bh6p5mbpuv78o" path="res://gfx/mainmenu.png" id="1_qna3t"]
 
 [node name="Mainmenu" type="Node2D"]
+script = ExtResource("1_g4udk")
 
 [node name="Mainmenu" type="Sprite2D" parent="."]
 position = Vector2(515, 512)
 scale = Vector2(2, 2)
 texture = ExtResource("1_qna3t")
+
+[node name="start" type="Button" parent="Mainmenu"]
+offset_left = -97.5
+offset_top = 29.0
+offset_right = -89.5
+offset_bottom = 37.0
+scale = Vector2(24.98, 13.14)
+flat = true
+
+[connection signal="pressed" from="Mainmenu/start" to="." method="_on_start_pressed"]

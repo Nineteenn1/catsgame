@@ -18,14 +18,15 @@ var bullet_mouse_position_copy
 
 var health = 100
 
-func wear() -> void:
-	pass
+func wear(item: Node2D, wear_position: Vector2) -> void:
+	add_child(item)
+	item.position = wear_position
 	
 func takeDamage(damage: int):
 	health -= damage
 
 func _process(delta: float) -> void:
-	if health == 0:
+	if health <= 0:
 		die()
 	
 func die() -> void:

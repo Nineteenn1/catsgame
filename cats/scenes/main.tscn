@@ -97,10 +97,10 @@ position = Vector2(1228, 776.5)
 shape = SubResource("RectangleShape2D_uq4ii")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -493.0
-offset_top = 305.0
-offset_right = -401.0
-offset_bottom = 328.0
+offset_left = -3832.0
+offset_top = 442.0
+offset_right = -3740.0
+offset_bottom = 465.0
 text = "Kocham cię"
 
 [node name="itemshop" type="Node2D" parent="."]
@@ -119,21 +119,133 @@ offset_right = 515.0
 offset_bottom = -379.0
 texture_normal = ExtResource("6_ux2v0")
 
-[node name="Ribbon2" type="Sprite2D" parent="itemshop"]
+[node name="item" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = -442.0
+offset_top = -146.0
+offset_right = -314.0
+offset_bottom = -115.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item2" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = -213.0
+offset_top = -146.0
+offset_right = -85.0
+offset_bottom = -115.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item3" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = 18.0
+offset_top = -146.0
+offset_right = 146.0
+offset_bottom = -115.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item4" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = 240.0
+offset_top = -146.0
+offset_right = 368.0
+offset_bottom = -115.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item5" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = -442.0
+offset_top = 80.0
+offset_right = -314.0
+offset_bottom = 111.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item6" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = -213.0
+offset_top = 80.0
+offset_right = -85.0
+offset_bottom = 111.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item7" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = 18.0
+offset_top = 80.0
+offset_right = 146.0
+offset_bottom = 111.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item8" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = 240.0
+offset_top = 80.0
+offset_right = 368.0
+offset_bottom = 111.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item9" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = -442.0
+offset_top = 305.0
+offset_right = -314.0
+offset_bottom = 336.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item10" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = -213.0
+offset_top = 305.0
+offset_right = -85.0
+offset_bottom = 336.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item11" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = 18.0
+offset_top = 305.0
+offset_right = 146.0
+offset_bottom = 336.0
+scale = Vector2(1.56, 6.36)
+
+[node name="item12" type="Button" parent="itemshop/menu"]
+z_index = 100
+offset_left = 240.0
+offset_top = 305.0
+offset_right = 368.0
+offset_bottom = 336.0
+scale = Vector2(1.56, 6.36)
+
+[node name="buy" type="Button" parent="itemshop/menu"]
 visible = false
+z_index = 10
+offset_left = 343.0
+offset_top = -222.0
+offset_right = 380.0
+offset_bottom = -191.0
+text = "buy"
+
+[node name="unclick_surface" type="Button" parent="itemshop/menu"]
+visible = false
+z_index = -1
+offset_left = -512.0
+offset_top = -507.0
+offset_right = -433.0
+offset_bottom = -499.0
+scale = Vector2(13.0378, 128.199)
+flat = true
+
+[node name="Ribbon2" type="Sprite2D" parent="itemshop"]
 z_index = 11
 position = Vector2(101, 587)
 texture = ExtResource("8_27278")
 
 [node name="Ribbon3" type="Sprite2D" parent="itemshop"]
-visible = false
 z_index = 11
 position = Vector2(357, 535)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("9_6wyl3")
 
 [node name="Ribbon4" type="Sprite2D" parent="itemshop"]
-visible = false
 z_index = 11
 position = Vector2(700, 516)
 scale = Vector2(0.5, 0.5)
@@ -156,4 +268,16 @@ texture_normal = ExtResource("6_ux2v0")
 
 [connection signal="timeout" from="cat/rat_spawn_timer" to="cat" method="_on_rat_spawn_timer_timeout"]
 [connection signal="pressed" from="itemshop/menu/close" to="itemshop" method="close_pressed"]
+[connection signal="pressed" from="itemshop/menu/item" to="itemshop" method="item_pressed" binds= [100]]
+[connection signal="pressed" from="itemshop/menu/item2" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item3" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item4" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item5" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item6" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item7" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item8" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item9" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item10" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item11" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item12" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="open" to="itemshop" method="_on_texture_button_pressed"]
