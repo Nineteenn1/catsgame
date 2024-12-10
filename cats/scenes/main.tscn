@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://igp5jqddcu7p"]
+[gd_scene load_steps=19 format=3 uid="uid://igp5jqddcu7p"]
 
 [ext_resource type="Script" path="res://scripts/cat.gd" id="1_mi3io"]
 [ext_resource type="Texture2D" uid="uid://cu7bpg86728b7" path="res://gfx/pickedMedia1.png" id="2_qvrcu"]
@@ -7,9 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://dvktunpm3xy3n" path="res://icon.svg" id="6_ux2v0"]
 [ext_resource type="Texture2D" uid="uid://41xmlhj0pbss" path="res://gfx/menu.png" id="7_14mi1"]
 [ext_resource type="Texture2D" uid="uid://b5k4cibjlhlkr" path="res://gfx/bg.png" id="7_pqkms"]
-[ext_resource type="Texture2D" uid="uid://br5lsqqdfpixk" path="res://gfx/ribbon.png" id="8_27278"]
+[ext_resource type="PackedScene" uid="uid://dqog4c8x51tmi" path="res://items/ribbon.tscn" id="8_3me5c"]
 [ext_resource type="Texture2D" uid="uid://q4h824coct50" path="res://gfx/glasses.png" id="9_6wyl3"]
 [ext_resource type="Texture2D" uid="uid://53i2v4xrrqsm" path="res://gfx/lights.png" id="10_3l418"]
+[ext_resource type="Script" path="res://scripts/item_base.gd" id="11_ltlpe"]
+[ext_resource type="Script" path="res://scripts/manager.gd" id="12_dg55e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gda02"]
 size = Vector2(148, 196)
@@ -60,6 +62,14 @@ wait_time = 3.314
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="cat"]
+
+[node name="wearables" type="Sprite2D" parent="cat"]
+
+[node name="ear" type="Node2D" parent="cat"]
+position = Vector2(66, -85)
+
+[node name="ear2" type="Node2D" parent="cat"]
+position = Vector2(8, -81)
 
 [node name="rat" parent="." instance=ExtResource("3_rm5ar")]
 
@@ -119,7 +129,7 @@ offset_right = 515.0
 offset_bottom = -379.0
 texture_normal = ExtResource("6_ux2v0")
 
-[node name="item" type="Button" parent="itemshop/menu"]
+[node name="item1" type="Button" parent="itemshop/menu"]
 z_index = 100
 offset_left = -442.0
 offset_top = -146.0
@@ -234,10 +244,8 @@ offset_bottom = -499.0
 scale = Vector2(13.0378, 128.199)
 flat = true
 
-[node name="Ribbon2" type="Sprite2D" parent="itemshop"]
-z_index = 11
-position = Vector2(101, 587)
-texture = ExtResource("8_27278")
+[node name="Ribbon2" parent="itemshop" instance=ExtResource("8_3me5c")]
+position = Vector2(167, 465)
 
 [node name="Ribbon3" type="Sprite2D" parent="itemshop"]
 z_index = 11
@@ -266,9 +274,15 @@ offset_right = 1026.0
 offset_bottom = 1021.0
 texture_normal = ExtResource("6_ux2v0")
 
+[node name="itemBase" type="Node2D" parent="."]
+script = ExtResource("11_ltlpe")
+
+[node name="manager" type="Node2D" parent="."]
+script = ExtResource("12_dg55e")
+
 [connection signal="timeout" from="cat/rat_spawn_timer" to="cat" method="_on_rat_spawn_timer_timeout"]
 [connection signal="pressed" from="itemshop/menu/close" to="itemshop" method="close_pressed"]
-[connection signal="pressed" from="itemshop/menu/item" to="itemshop" method="item_pressed" binds= [100]]
+[connection signal="pressed" from="itemshop/menu/item1" to="itemBase" method="on_item_button_pressed" binds= [1]]
 [connection signal="pressed" from="itemshop/menu/item2" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item3" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item4" to="itemshop" method="item_pressed"]
@@ -280,4 +294,5 @@ texture_normal = ExtResource("6_ux2v0")
 [connection signal="pressed" from="itemshop/menu/item10" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item11" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item12" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/buy" to="itemBase" method="buy"]
 [connection signal="pressed" from="open" to="itemshop" method="_on_texture_button_pressed"]

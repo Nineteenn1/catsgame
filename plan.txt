@@ -1,18 +1,14 @@
 10. cat.money 
 11. buy()
-12. wear()
-13. if cos tam:
-	szczur_scene.instantiate()
-14. cat.health
-15. cat.takeDamage()
+
+
 16. szczur.attack()
 17 p.lay animation
 18. if distance <>= 
 19. ai
 
-szczur resp w
-atak
 --------------------------- nastepna lekcja
 animacja
 item class and constructor
-
+12. wear()
+wearables - (child)

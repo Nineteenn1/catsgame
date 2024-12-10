@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqog4c8x51tmi"]
+
+[ext_resource type="Texture2D" uid="uid://br5lsqqdfpixk" path="res://gfx/ribbon.png" id="1_mtg81"]
+[ext_resource type="Script" path="res://scripts/items/ribbon.gd" id="2_dbm4o"]
+
+[node name="Ribbon2" type="Sprite2D"]
+z_index = 11
+position = Vector2(359, 638)
+texture = ExtResource("1_mtg81")
+script = ExtResource("2_dbm4o")

@@ -10,6 +10,9 @@ var line_point = 0
 @onready var bullet_scene = load("res://scenes/bullet.tscn")
 @onready var rat_scene = load("res://scenes/rat.tscn")
 
+
+@onready var manager = get_parent().get_node("manager")
+
 var bullet = null
 
 var bullet_direction = Vector2(0,0)
@@ -18,12 +21,15 @@ var bullet_mouse_position_copy
 
 var health = 100
 
-func wear(item: Node2D, wear_position: Vector2) -> void:
-	add_child(item)
+func wear(item: ItemBase, wear_position: Vector2) -> void:
+	$wearables.add_child(item)
 	item.position = wear_position
 	
 func takeDamage(damage: int):
 	health -= damage
+	
+func heal(m_health: int):
+	health += m_health
 
 func _process(delta: float) -> void:
 	if health <= 0:
@@ -40,16 +46,17 @@ func _physics_process(delta: float) -> void:
 	var directionY := Input.get_axis("UP", "DOWN")
 	
 	if directionX:
-		velocity.x = directionX * SPEED
+		velocity.x = directionX * SPEED * manager.speed_modifier
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 	if directionY:
-		velocity.y = directionY * SPEED
+		velocity.y = directionY * SPEED * manager.speed_modifier
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		
 	$Sprite2D.flip_h = not velocity.x > 0			
+	$wearables.flip_h = not velocity.x > 0
 	move_and_slide()
 
 
@@ -73,14 +80,15 @@ func _input(e: InputEvent) -> void:
 			bullet.mouse_position = bullet_mouse_position_copy
 			$global_timer.start()
 		# on collision
+	if Input.is_key_pressed(KEY_BACKSLASH):
+		var ribbon_scene = load("res://items/ribbon.tscn")
+		var ribbon = ribbon_scene.instantiate()
+		wear(ribbon, $ear2.position)
 		# health bar
 
 		
 			
-		#bullet cooldown!!
-			
-
-
+		#bullet cooldown!!S
 		#bullet.mouse_position += Vector2(sqrt(bullet.mouse_position.x * bullet.mouse_position.x),
 		#sqrt(bullet.mouse_position.y * bullet.mouse_position.y))
 

@@ -26,6 +26,8 @@ func close_pressed() -> void:
 	get_parent().get_node("open").set_visible(1)
 	Engine.time_scale = 1
 	
-func item_pressed(price: int) -> void:
+func item_pressed() -> void:
 	#press_again = not press_again
 	$menu/buy.set_visible(1)
+	
+	#outdated, change in the future
