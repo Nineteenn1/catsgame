@@ -20,9 +20,9 @@ var upgrade_count = 0
 
 var modifier_diff = 1
 
-@onready var buy_button = get_tree().root.get_child(0).get_node("itemshop/menu/buy")
+@onready var buy_button = get_tree().root.get_child(1).get_node("itemshop/menu/buy")
 
-@onready var cat = get_tree().root.get_child(0).get_node("cat")
+@onready var cat = get_tree().root.get_child(1).get_node("cat")
 
 var money_temp = 0
 var scene_path = ""
@@ -36,10 +36,10 @@ var items = []
 func on_item_button_pressed(selected_index) -> void:
 	buy_button.set_visible(1)
 	selected_item_index = selected_index - 1
-	
+
 	
 func buy() -> void:
-	var item = items[selected_item_index]
+	var item = Globals.items[selected_item_index]
 	var item_scene = load(item.scene_path)
 	var item_instance = item_scene.instantiate()
 	money_temp -= price
@@ -54,7 +54,8 @@ func constructor(m_icon: Sprite2D, m_price: int, m_modifier_type: int, m_modifie
 	modifier_diff = m_modifier_diff
 	scene_path = m_scene_path
 	wear_position = m_wear_position
-	items.append(self)
+	Globals.items.append(self)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

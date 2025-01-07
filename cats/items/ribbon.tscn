@@ -5,6 +5,6 @@
 
 [node name="Ribbon2" type="Sprite2D"]
 z_index = 11
-position = Vector2(359, 638)
+position = Vector2(383, 664)
 texture = ExtResource("1_mtg81")
 script = ExtResource("2_dbm4o")

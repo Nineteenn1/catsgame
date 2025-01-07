@@ -267,6 +267,9 @@ offset_right = 167.0
 offset_bottom = 308.0
 text = "Balance: x$"
 
+[node name="itemBase" type="Node2D" parent="itemshop"]
+script = ExtResource("11_ltlpe")
+
 [node name="open" type="TextureButton" parent="."]
 offset_left = 898.0
 offset_top = 893.0
@@ -274,15 +277,12 @@ offset_right = 1026.0
 offset_bottom = 1021.0
 texture_normal = ExtResource("6_ux2v0")
 
-[node name="itemBase" type="Node2D" parent="."]
-script = ExtResource("11_ltlpe")
-
 [node name="manager" type="Node2D" parent="."]
 script = ExtResource("12_dg55e")
 
 [connection signal="timeout" from="cat/rat_spawn_timer" to="cat" method="_on_rat_spawn_timer_timeout"]
 [connection signal="pressed" from="itemshop/menu/close" to="itemshop" method="close_pressed"]
-[connection signal="pressed" from="itemshop/menu/item1" to="itemBase" method="on_item_button_pressed" binds= [1]]
+[connection signal="pressed" from="itemshop/menu/item1" to="itemshop/itemBase" method="on_item_button_pressed" binds= [1]]
 [connection signal="pressed" from="itemshop/menu/item2" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item3" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item4" to="itemshop" method="item_pressed"]
@@ -294,5 +294,5 @@ script = ExtResource("12_dg55e")
 [connection signal="pressed" from="itemshop/menu/item10" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item11" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item12" to="itemshop" method="item_pressed"]
-[connection signal="pressed" from="itemshop/menu/buy" to="itemBase" method="buy"]
+[connection signal="pressed" from="itemshop/menu/buy" to="itemshop/itemBase" method="buy"]
 [connection signal="pressed" from="open" to="itemshop" method="_on_texture_button_pressed"]
