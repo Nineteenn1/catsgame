@@ -13,6 +13,11 @@ var name_index = 1
 @onready var cat_position = cat_node.get("position")
 @onready var cat_velocity = cat_node.get("velocity")
 
+
+@onready var manager = get_parent().get_node("manager")
+@onready var item_base = get_parent().get_node("itemshop/itemBase")
+
+
 var money = 0
 
 var attack_timeout = true
@@ -27,7 +32,9 @@ func attack(entity, damage: int):
 				attack_timeout = false
 
 func takeDamage(damage: int):
-	health -= damage
+	print("damage", damage)
+	print("modif. damage", damage * manager.global_modifiers[item_base.MODIFIER_TYPE.DAMAGE])
+	health -= damage * manager.global_modifiers[item_base.MODIFIER_TYPE.DAMAGE]
 	$CanvasLayer/TextureProgressBar.value = health
 
 
@@ -69,7 +76,7 @@ func _process(delta: float) -> void:
 	
 	#removeEntities()
 
-	if health == 0:
+	if health <= 0:
 		die()
 
 func _physics_process(delta: float) -> void:

@@ -1,17 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://igp5jqddcu7p"]
+[gd_scene load_steps=20 format=3 uid="uid://igp5jqddcu7p"]
 
 [ext_resource type="Script" path="res://scripts/cat.gd" id="1_mi3io"]
 [ext_resource type="Texture2D" uid="uid://cu7bpg86728b7" path="res://gfx/pickedMedia1.png" id="2_qvrcu"]
 [ext_resource type="PackedScene" uid="uid://dkxv35ywvf6jh" path="res://scenes/rat.tscn" id="3_rm5ar"]
 [ext_resource type="Script" path="res://scripts/itemshop.gd" id="5_5udvn"]
-[ext_resource type="Texture2D" uid="uid://dvktunpm3xy3n" path="res://icon.svg" id="6_ux2v0"]
 [ext_resource type="Texture2D" uid="uid://41xmlhj0pbss" path="res://gfx/menu.png" id="7_14mi1"]
+[ext_resource type="Texture2D" uid="uid://vqqbyf0spiy5" path="res://gfx/close.png" id="7_43cpm"]
 [ext_resource type="Texture2D" uid="uid://b5k4cibjlhlkr" path="res://gfx/bg.png" id="7_pqkms"]
 [ext_resource type="PackedScene" uid="uid://dqog4c8x51tmi" path="res://items/ribbon.tscn" id="8_3me5c"]
-[ext_resource type="Texture2D" uid="uid://q4h824coct50" path="res://gfx/glasses.png" id="9_6wyl3"]
 [ext_resource type="Texture2D" uid="uid://53i2v4xrrqsm" path="res://gfx/lights.png" id="10_3l418"]
+[ext_resource type="PackedScene" uid="uid://3g8jmqho5xlv" path="res://items/glasses.tscn" id="11_5gt2r"]
 [ext_resource type="Script" path="res://scripts/item_base.gd" id="11_ltlpe"]
 [ext_resource type="Script" path="res://scripts/manager.gd" id="12_dg55e"]
+[ext_resource type="Texture2D" uid="uid://dm7vlpu0i3v8t" path="res://gfx/shop.png" id="12_lc4gp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gda02"]
 size = Vector2(148, 196)
@@ -71,6 +72,12 @@ position = Vector2(66, -85)
 [node name="ear2" type="Node2D" parent="cat"]
 position = Vector2(8, -81)
 
+[node name="nose" type="Node2D" parent="cat"]
+position = Vector2(38, -45)
+
+[node name="lefteye" type="Node2D" parent="cat"]
+position = Vector2(137, -56)
+
 [node name="rat" parent="." instance=ExtResource("3_rm5ar")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -123,11 +130,12 @@ position = Vector2(511, 507)
 texture = ExtResource("7_14mi1")
 
 [node name="close" type="TextureButton" parent="itemshop/menu"]
-offset_left = 387.0
-offset_top = -507.0
-offset_right = 515.0
-offset_bottom = -379.0
-texture_normal = ExtResource("6_ux2v0")
+offset_left = 380.0
+offset_top = -512.0
+offset_right = 636.0
+offset_bottom = -256.0
+scale = Vector2(0.52, 0.52)
+texture_normal = ExtResource("7_43cpm")
 
 [node name="item1" type="Button" parent="itemshop/menu"]
 z_index = 100
@@ -247,12 +255,6 @@ flat = true
 [node name="Ribbon2" parent="itemshop" instance=ExtResource("8_3me5c")]
 position = Vector2(167, 465)
 
-[node name="Ribbon3" type="Sprite2D" parent="itemshop"]
-z_index = 11
-position = Vector2(357, 535)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("9_6wyl3")
-
 [node name="Ribbon4" type="Sprite2D" parent="itemshop"]
 z_index = 11
 position = Vector2(700, 516)
@@ -270,12 +272,18 @@ text = "Balance: x$"
 [node name="itemBase" type="Node2D" parent="itemshop"]
 script = ExtResource("11_ltlpe")
 
+[node name="Glasses" parent="itemshop" instance=ExtResource("11_5gt2r")]
+z_index = 11
+position = Vector2(372, 540)
+scale = Vector2(0.614315, 0.892885)
+
 [node name="open" type="TextureButton" parent="."]
-offset_left = 898.0
-offset_top = 893.0
-offset_right = 1026.0
-offset_bottom = 1021.0
-texture_normal = ExtResource("6_ux2v0")
+offset_left = 720.0
+offset_top = 737.0
+offset_right = 1744.0
+offset_bottom = 1761.0
+scale = Vector2(0.399999, 0.4)
+texture_normal = ExtResource("12_lc4gp")
 
 [node name="manager" type="Node2D" parent="."]
 script = ExtResource("12_dg55e")
@@ -283,7 +291,7 @@ script = ExtResource("12_dg55e")
 [connection signal="timeout" from="cat/rat_spawn_timer" to="cat" method="_on_rat_spawn_timer_timeout"]
 [connection signal="pressed" from="itemshop/menu/close" to="itemshop" method="close_pressed"]
 [connection signal="pressed" from="itemshop/menu/item1" to="itemshop/itemBase" method="on_item_button_pressed" binds= [1]]
-[connection signal="pressed" from="itemshop/menu/item2" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item2" to="itemshop/itemBase" method="on_item_button_pressed" binds= [2]]
 [connection signal="pressed" from="itemshop/menu/item3" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item4" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item5" to="itemshop" method="item_pressed"]

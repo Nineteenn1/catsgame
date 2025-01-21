@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://3g8jmqho5xlv"]
+
+[ext_resource type="Texture2D" uid="uid://q4h824coct50" path="res://gfx/glasses.png" id="1_biqtd"]
+[ext_resource type="Script" path="res://scripts/items/glasses.gd" id="1_i2xtq"]
+
+[node name="Glasses" type="Sprite2D"]
+z_index = 2
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_biqtd")
+script = ExtResource("1_i2xtq")

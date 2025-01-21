@@ -1,12 +1,12 @@
 extends ItemBase
 
-class_name Ribbon
+class_name Glasses
 
-@onready var ear2 = get_tree().root.get_child(1).get_node("cat/ear2")
+@onready var lefteye = get_tree().root.get_child(1).get_node("cat/lefteye")
 
 func _ready() -> void:
-	constructor(get_node("."), 150, MODIFIER_TYPE.DAMAGE, 1.50, ear2.position, "res://items/ribbon.tscn")
-	print(price)
+	#fix positioning
+	constructor(get_node("."), 200, MODIFIER_TYPE.SIZE, 0.5, lefteye.position, "res://items/glasses.tscn")
 	
 func buy():
 	money = get_tree().root.get_child(1).get_node("itemshop").money

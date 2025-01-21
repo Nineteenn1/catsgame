@@ -12,3 +12,9 @@ animacja
 item class and constructor
 12. wear()
 wearables - (child)
+
+make game progressively harder
+add all other items
+multiple modifiers at once
+add levels of items
+item description in shop

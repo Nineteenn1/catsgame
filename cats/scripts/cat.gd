@@ -10,8 +10,9 @@ var line_point = 0
 @onready var bullet_scene = load("res://scenes/bullet.tscn")
 @onready var rat_scene = load("res://scenes/rat.tscn")
 
-
 @onready var manager = get_parent().get_node("manager")
+@onready var item_base = get_parent().get_node("itemshop/itemBase")
+
 
 var bullet = null
 
@@ -57,8 +58,11 @@ func _physics_process(delta: float) -> void:
 		
 	$Sprite2D.flip_h = not velocity.x > 0			
 	$wearables.flip_h = not velocity.x > 0
+	
+	$Sprite2D.scale = Vector2(1/manager.global_modifiers[item_base.MODIFIER_TYPE.SIZE], 1/manager.global_modifiers[item_base.MODIFIER_TYPE.SIZE])
 	move_and_slide()
 
+	#fix this bug, enable many wearables
 
 	#$Line2D.set_point_position(0, Vector2(100,100))
 	#draw_line(position, line_point, Color(1, 1, 1), 1, false)

@@ -13,7 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	$money.text = "Balance: {money}$".format({"money": money})
 
 func _on_texture_button_pressed() -> void:
 	set_visible(1)
@@ -26,8 +26,5 @@ func close_pressed() -> void:
 	get_parent().get_node("open").set_visible(1)
 	Engine.time_scale = 1
 	
-func item_pressed() -> void:
-	#press_again = not press_again
-	$menu/buy.set_visible(1)
 	
 	#outdated, change in the future
