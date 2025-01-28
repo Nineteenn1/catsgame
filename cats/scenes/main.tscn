@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://igp5jqddcu7p"]
+[gd_scene load_steps=21 format=3 uid="uid://igp5jqddcu7p"]
 
 [ext_resource type="Script" path="res://scripts/cat.gd" id="1_mi3io"]
 [ext_resource type="Texture2D" uid="uid://cu7bpg86728b7" path="res://gfx/pickedMedia1.png" id="2_qvrcu"]
@@ -11,11 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://53i2v4xrrqsm" path="res://gfx/lights.png" id="10_3l418"]
 [ext_resource type="PackedScene" uid="uid://3g8jmqho5xlv" path="res://items/glasses.tscn" id="11_5gt2r"]
 [ext_resource type="Script" path="res://scripts/item_base.gd" id="11_ltlpe"]
+[ext_resource type="PackedScene" uid="uid://dbv4uoq28if88" path="res://items/health_potion.tscn" id="12_bj7nd"]
 [ext_resource type="Script" path="res://scripts/manager.gd" id="12_dg55e"]
 [ext_resource type="Texture2D" uid="uid://dm7vlpu0i3v8t" path="res://gfx/shop.png" id="12_lc4gp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gda02"]
-size = Vector2(148, 196)
+size = Vector2(106, 153)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmk6t"]
 size = Vector2(509, 196.5)
@@ -46,7 +47,7 @@ scale = Vector2(0.95, 0.95)
 texture = ExtResource("2_qvrcu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cat"]
-position = Vector2(0.0999985, 0.5)
+position = Vector2(2, 1.5)
 shape = SubResource("RectangleShape2D_gda02")
 
 [node name="Line2D" type="Line2D" parent="cat"]
@@ -79,6 +80,7 @@ position = Vector2(38, -45)
 position = Vector2(137, -56)
 
 [node name="rat" parent="." instance=ExtResource("3_rm5ar")]
+position = Vector2(42, 403)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -257,7 +259,7 @@ position = Vector2(167, 465)
 
 [node name="Ribbon4" type="Sprite2D" parent="itemshop"]
 z_index = 11
-position = Vector2(700, 516)
+position = Vector2(915, 510)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_3l418")
 
@@ -277,10 +279,15 @@ z_index = 11
 position = Vector2(372, 540)
 scale = Vector2(0.614315, 0.892885)
 
+[node name="HealthPotion" parent="itemshop" instance=ExtResource("12_bj7nd")]
+z_index = 10
+position = Vector2(622, 446)
+scale = Vector2(0.18, 0.18)
+
 [node name="open" type="TextureButton" parent="."]
-offset_left = 720.0
+offset_left = 731.0
 offset_top = 737.0
-offset_right = 1744.0
+offset_right = 1755.0
 offset_bottom = 1761.0
 scale = Vector2(0.399999, 0.4)
 texture_normal = ExtResource("12_lc4gp")
@@ -292,8 +299,7 @@ script = ExtResource("12_dg55e")
 [connection signal="pressed" from="itemshop/menu/close" to="itemshop" method="close_pressed"]
 [connection signal="pressed" from="itemshop/menu/item1" to="itemshop/itemBase" method="on_item_button_pressed" binds= [1]]
 [connection signal="pressed" from="itemshop/menu/item2" to="itemshop/itemBase" method="on_item_button_pressed" binds= [2]]
-[connection signal="pressed" from="itemshop/menu/item3" to="itemshop" method="item_pressed"]
-[connection signal="pressed" from="itemshop/menu/item4" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item3" to="itemshop/itemBase" method="on_item_button_pressed" binds= [3]]
 [connection signal="pressed" from="itemshop/menu/item5" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item6" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item7" to="itemshop" method="item_pressed"]

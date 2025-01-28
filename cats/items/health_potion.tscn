@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbv4uoq28if88"]
+
+[ext_resource type="Texture2D" uid="uid://f4n7b32g7snh" path="res://gfx/Untitled_01-07-2025_03-26-44.png" id="1_5gjuu"]
+[ext_resource type="Script" path="res://scripts/items/health_potion.gd" id="2_bjin0"]
+
+[node name="HealthPotion" type="Sprite2D"]
+position = Vector2(498, 526)
+texture = ExtResource("1_5gjuu")
+script = ExtResource("2_bjin0")

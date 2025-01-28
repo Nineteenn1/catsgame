@@ -16,6 +16,8 @@ enum MODIFIER_TYPE {
 var modifier = -1
 var price = 0
 
+var wearable = true
+
 var icon: Sprite2D
 var upgrade_count = 0
 
@@ -47,6 +49,7 @@ func on_item_button_pressed(selected_index) -> void:
 func buy() -> void:
 	money = get_tree().root.get_child(1).get_node("itemshop").money
 	var item = Globals.items[selected_item_index]
+	print(Globals.items)
 	var item_scene = load(item.scene_path)
 	var item_instance = item_scene.instantiate()
 	print(money)
@@ -54,17 +57,19 @@ func buy() -> void:
 	#if true: #debug
 		get_tree().root.get_child(1).get_node("itemshop").money -= item.price
 		print(get_tree().root.get_child(1).get_node("itemshop").money)
-		cat.wear(item_instance, wear_position)
+		if wearable:
+			cat.wear(item_instance, wear_position)
 		manager.modifier_calc(item.modifier, item.modifier_diff)
 
 func constructor(m_icon: Sprite2D, m_price: int, m_modifier_type: int, m_modifier_diff:
-	 float, m_wear_position: Vector2, m_scene_path: String):
+	 float, m_wear_position: Vector2, m_scene_path: String, m_wearable: bool):
 	icon = m_icon
 	price = m_price
 	modifier = m_modifier_type
 	modifier_diff = m_modifier_diff
 	scene_path = m_scene_path
 	wear_position = m_wear_position
+	wearable = m_wearable
 	Globals.items.append(self)
 
 

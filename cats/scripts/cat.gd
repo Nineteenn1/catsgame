@@ -25,7 +25,8 @@ var health = 100
 func wear(item: ItemBase, wear_position: Vector2) -> void:
 	$wearables.add_child(item)
 	item.position = wear_position
-	
+	if not item.wearable:
+		item.set_visible(0)
 func takeDamage(damage: int):
 	health -= damage
 	
@@ -101,6 +102,14 @@ func _input(e: InputEvent) -> void:
 		#bullet.direction.y = 
 		
 		#add manager
+
+func radiance():
+	if false:
+		# play radiance animation
+		#deal damage if rat in circle
+		#turn rats red on hit
+		pass
+		
 
 
 func _on_rat_spawn_timer_timeout() -> void:

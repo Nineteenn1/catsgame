@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dik48gjgshgv2"]
+
+[ext_resource type="Texture2D" uid="uid://53i2v4xrrqsm" path="res://gfx/lights.png" id="1_ncajv"]
+[ext_resource type="Script" path="res://scripts/items/radiance.gd" id="2_tcfck"]
+
+[node name="Radiance" type="Sprite2D"]
+position = Vector2(613, 376)
+texture = ExtResource("1_ncajv")
+script = ExtResource("2_tcfck")

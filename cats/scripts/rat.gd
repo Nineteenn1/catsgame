@@ -6,6 +6,13 @@ const SPEED = 200.0
 var health = 100
 var name_index = 1
 
+const xmin = 40
+const xmax = 1000
+const ymin = 387
+const ymax = 990
+
+#IF ERROR= (FIX ERROR)
+
 @onready var area = get_node("Area2D")
 
 @onready var cat_node = get_parent().get_node("cat")
@@ -41,9 +48,13 @@ func takeDamage(damage: int):
 
 
 
-#func _ready():
-		#$CanvasLayer/TextureProgressBar.value = health
-
+func _ready():
+	var newPos = Vector2(randi_range(xmin, xmax), randi_range(ymin, ymax))
+	if abs(newPos.x - cat_node.position.x) > 50 and abs(newPos.y - cat_node.position.y) > 50:
+		position = newPos
+	else: 
+		newPos = Vector2(randi_range(xmin, xmax), randi_range(ymin, ymax))
+		position = newPos
 #func removeEntities():
 #	for i in entities:
 	#	entities[i].queue_free()
