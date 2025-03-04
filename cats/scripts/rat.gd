@@ -33,9 +33,10 @@ func attack(entity, damage: int):
 	if area != null:
 		if entity in area.get_overlapping_bodies() and entity.is_inside_tree():	
 			if 	attack_timeout == true: #timer.time_left == 0 // so that the cat is not dead in a millisecond after the rat getting close
-				entity.takeDamage(damage)
-				print("cat ded!!!")
+				print("modifier: ", manager.enemy_damage_modifier)
+				entity.takeDamage(damage * manager.enemy_damage_modifier)
 				$Timer.start()
+				print("damage_modified", damage * manager.enemy_damage_modifier)
 				attack_timeout = false
 
 func takeDamage(damage: int):

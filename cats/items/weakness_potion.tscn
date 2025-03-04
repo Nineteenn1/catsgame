@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7x14fr5ten6x"]
+
+[ext_resource type="Texture2D" uid="uid://djusfhjgqa51x" path="res://gfx/Untitled_01-07-2025_03-26-45.png" id="1_t1epp"]
+[ext_resource type="Script" path="res://scripts/items/weakness_potion.gd" id="1_unsds"]
+
+[node name="WeaknessPotion" type="Sprite2D"]
+position = Vector2(504, 517)
+texture = ExtResource("1_t1epp")
+script = ExtResource("1_unsds")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true

@@ -1,5 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://igp5jqddcu7p"]
+[gd_scene load_steps=24 format=3 uid="uid://igp5jqddcu7p"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_04exy"]
 [ext_resource type="Script" path="res://scripts/cat.gd" id="1_mi3io"]
 [ext_resource type="Texture2D" uid="uid://cu7bpg86728b7" path="res://gfx/pickedMedia1.png" id="2_qvrcu"]
 [ext_resource type="PackedScene" uid="uid://dkxv35ywvf6jh" path="res://scenes/rat.tscn" id="3_rm5ar"]
@@ -14,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dbv4uoq28if88" path="res://items/health_potion.tscn" id="12_bj7nd"]
 [ext_resource type="Script" path="res://scripts/manager.gd" id="12_dg55e"]
 [ext_resource type="Texture2D" uid="uid://dm7vlpu0i3v8t" path="res://gfx/shop.png" id="12_lc4gp"]
+[ext_resource type="PackedScene" uid="uid://c7x14fr5ten6x" path="res://items/weakness_potion.tscn" id="14_1pkyg"]
+[ext_resource type="AudioStream" uid="uid://c6ho0tb5y578y" path="res://music/szybszy.mp3" id="16_jgdpc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gda02"]
 size = Vector2(106, 153)
@@ -34,6 +37,7 @@ size = Vector2(160, 708)
 size = Vector2(1088, 81)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_04exy")
 
 [node name="cat" type="CharacterBody2D" parent="."]
 z_index = 1
@@ -123,7 +127,6 @@ offset_bottom = 465.0
 text = "Kocham cię"
 
 [node name="itemshop" type="Node2D" parent="."]
-visible = false
 script = ExtResource("5_5udvn")
 
 [node name="menu" type="Sprite2D" parent="itemshop"]
@@ -284,6 +287,11 @@ z_index = 10
 position = Vector2(622, 446)
 scale = Vector2(0.18, 0.18)
 
+[node name="WeaknessPotion" parent="itemshop" instance=ExtResource("14_1pkyg")]
+z_index = 12
+position = Vector2(170, 671)
+scale = Vector2(0.18, 0.18)
+
 [node name="open" type="TextureButton" parent="."]
 offset_left = 731.0
 offset_top = 737.0
@@ -295,12 +303,16 @@ texture_normal = ExtResource("12_lc4gp")
 [node name="manager" type="Node2D" parent="."]
 script = ExtResource("12_dg55e")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_jgdpc")
+
 [connection signal="timeout" from="cat/rat_spawn_timer" to="cat" method="_on_rat_spawn_timer_timeout"]
 [connection signal="pressed" from="itemshop/menu/close" to="itemshop" method="close_pressed"]
 [connection signal="pressed" from="itemshop/menu/item1" to="itemshop/itemBase" method="on_item_button_pressed" binds= [1]]
 [connection signal="pressed" from="itemshop/menu/item2" to="itemshop/itemBase" method="on_item_button_pressed" binds= [2]]
 [connection signal="pressed" from="itemshop/menu/item3" to="itemshop/itemBase" method="on_item_button_pressed" binds= [3]]
-[connection signal="pressed" from="itemshop/menu/item5" to="itemshop" method="item_pressed"]
+[connection signal="pressed" from="itemshop/menu/item4" to="itemshop/itemBase" method="on_item_button_pressed" binds= [4]]
+[connection signal="pressed" from="itemshop/menu/item5" to="itemshop/itemBase" method="on_item_button_pressed" binds= [5]]
 [connection signal="pressed" from="itemshop/menu/item6" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item7" to="itemshop" method="item_pressed"]
 [connection signal="pressed" from="itemshop/menu/item8" to="itemshop" method="item_pressed"]

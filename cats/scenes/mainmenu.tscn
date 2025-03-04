@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6yiropuvfbyb"]
+[gd_scene load_steps=4 format=3 uid="uid://b6yiropuvfbyb"]
 
 [ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_g4udk"]
 [ext_resource type="Texture2D" uid="uid://bh6p5mbpuv78o" path="res://gfx/mainmenu.png" id="1_qna3t"]
+[ext_resource type="AudioStream" uid="uid://mwoerbt38tq0" path="res://music/wolniejszy.mp3" id="3_umsgf"]
 
 [node name="Mainmenu" type="Node2D"]
 script = ExtResource("1_g4udk")
@@ -18,5 +19,9 @@ offset_right = -89.5
 offset_bottom = 37.0
 scale = Vector2(24.98, 13.14)
 flat = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_umsgf")
+parameters/looping = true
 
 [connection signal="pressed" from="Mainmenu/start" to="." method="_on_start_pressed"]

@@ -10,7 +10,8 @@ enum MODIFIER_TYPE {
 	ATTACK_SPEED = 3,
 	MONEY = 4,
 	RADIANCE = 5,
-	SIZE = 6
+	SIZE = 6,
+	ENEMY_DAMAGE = 7
 }
 
 var modifier = -1
@@ -53,8 +54,8 @@ func buy() -> void:
 	var item_scene = load(item.scene_path)
 	var item_instance = item_scene.instantiate()
 	print(money)
-	if money >= item.price:
-	#if true: #debug
+	#if money >= item.price:
+	if true: #debug
 		get_tree().root.get_child(1).get_node("itemshop").money -= item.price
 		print(get_tree().root.get_child(1).get_node("itemshop").money)
 		if wearable:
