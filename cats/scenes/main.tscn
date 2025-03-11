@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://igp5jqddcu7p"]
+[gd_scene load_steps=26 format=3 uid="uid://igp5jqddcu7p"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_04exy"]
 [ext_resource type="Script" path="res://scripts/cat.gd" id="1_mi3io"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/manager.gd" id="12_dg55e"]
 [ext_resource type="Texture2D" uid="uid://dm7vlpu0i3v8t" path="res://gfx/shop.png" id="12_lc4gp"]
 [ext_resource type="PackedScene" uid="uid://c7x14fr5ten6x" path="res://items/weakness_potion.tscn" id="14_1pkyg"]
+[ext_resource type="PackedScene" uid="uid://dik48gjgshgv2" path="res://items/radiance.tscn" id="14_ofg2c"]
 [ext_resource type="AudioStream" uid="uid://c6ho0tb5y578y" path="res://music/szybszy.mp3" id="16_jgdpc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gda02"]
@@ -35,6 +36,9 @@ size = Vector2(160, 708)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uq4ii"]
 size = Vector2(1088, 81)
+
+[sub_resource type="FontVariation" id="FontVariation_0ohbd"]
+variation_embolden = 0.67
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_04exy")
@@ -127,6 +131,7 @@ offset_bottom = 465.0
 text = "Kocham cię"
 
 [node name="itemshop" type="Node2D" parent="."]
+visible = false
 script = ExtResource("5_5udvn")
 
 [node name="menu" type="Sprite2D" parent="itemshop"]
@@ -260,18 +265,14 @@ flat = true
 [node name="Ribbon2" parent="itemshop" instance=ExtResource("8_3me5c")]
 position = Vector2(167, 465)
 
-[node name="Ribbon4" type="Sprite2D" parent="itemshop"]
-z_index = 11
-position = Vector2(915, 510)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_3l418")
-
 [node name="money" type="Label" parent="itemshop"]
 z_index = 100
 offset_left = 79.0
-offset_top = 285.0
-offset_right = 167.0
+offset_top = 246.0
+offset_right = 246.0
 offset_bottom = 308.0
+theme_override_fonts/font = SubResource("FontVariation_0ohbd")
+theme_override_font_sizes/font_size = 33
 text = "Balance: x$"
 
 [node name="itemBase" type="Node2D" parent="itemshop"]
@@ -289,8 +290,14 @@ scale = Vector2(0.18, 0.18)
 
 [node name="WeaknessPotion" parent="itemshop" instance=ExtResource("14_1pkyg")]
 z_index = 12
-position = Vector2(170, 671)
+position = Vector2(848, 436)
 scale = Vector2(0.18, 0.18)
+
+[node name="Radiance" parent="itemshop" instance=ExtResource("14_ofg2c")]
+z_index = 16
+position = Vector2(245, 748)
+scale = Vector2(0.56, 0.56)
+texture = ExtResource("10_3l418")
 
 [node name="open" type="TextureButton" parent="."]
 offset_left = 731.0

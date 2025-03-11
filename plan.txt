@@ -20,3 +20,7 @@ add levels of items
 item description in shop
 knockback item
 double shot
+fix potion activating at start
+on_buy() function
+fix radiance
+make it do damage, trigger, fix shop appearance

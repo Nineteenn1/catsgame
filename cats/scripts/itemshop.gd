@@ -25,6 +25,7 @@ func close_pressed() -> void:
 	set_visible(0)
 	get_parent().get_node("open").set_visible(1)
 	Engine.time_scale = 1
+	Globals.in_game = true
 	
 	
 	#outdated, change in the future

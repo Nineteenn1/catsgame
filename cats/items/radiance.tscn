@@ -1,21 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://dik48gjgshgv2"]
+[gd_scene load_steps=5 format=3 uid="uid://dik48gjgshgv2"]
 
 [ext_resource type="Texture2D" uid="uid://53i2v4xrrqsm" path="res://gfx/lights.png" id="1_ncajv"]
+[ext_resource type="Texture2D" uid="uid://cmfy60eabq3ek" path="res://gfx/aura.png" id="2_agnmd"]
 [ext_resource type="Script" path="res://scripts/items/radiance.gd" id="2_tcfck"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v7nne"]
 radius = 133.094
 
 [node name="Radiance" type="Sprite2D"]
-position = Vector2(611, 623)
-texture = ExtResource("1_ncajv")
+z_index = 4
+position = Vector2(785, 784)
 script = ExtResource("2_tcfck")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="collider" type="Area2D" parent="."]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider"]
 position = Vector2(-143, -136)
 shape = SubResource("CircleShape2D_v7nne")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[node name="effect" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(-140, -143)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("2_agnmd")
+
+[node name="shop_and_wear" type="Sprite2D" parent="."]
+position = Vector2(-6, -4)
+texture = ExtResource("1_ncajv")
+
+[connection signal="area_entered" from="collider" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="collider" to="." method="_on_area_2d_area_exited"]
