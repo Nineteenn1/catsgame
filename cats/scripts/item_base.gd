@@ -24,6 +24,8 @@ var upgrade_count = 0
 
 var modifier_diff = 1
 
+var description = ""
+
 @onready var buy_button = get_tree().root.get_child(1).get_node("itemshop/menu/buy")
 
 @onready var cat = get_tree().root.get_child(1).get_node("cat")
@@ -45,6 +47,7 @@ var items = []
 func on_item_button_pressed(selected_index) -> void:
 	buy_button.set_visible(1)
 	selected_item_index = selected_index - 1
+	get_parent().get_node("menu/description").text = Globals.items[selected_item_index].description
 
 	
 func buy() -> void:
@@ -63,7 +66,7 @@ func buy() -> void:
 		manager.modifier_calc(item.modifier, item.modifier_diff)
 
 func constructor(m_icon: Sprite2D, m_price: int, m_modifier_type: int, m_modifier_diff:
-	 float, m_wear_position: Vector2, m_scene_path: String, m_wearable: bool):
+	 float, m_wear_position: Vector2, m_scene_path: String, m_wearable: bool, m_description: String):
 	icon = m_icon
 	price = m_price
 	modifier = m_modifier_type
@@ -71,6 +74,7 @@ func constructor(m_icon: Sprite2D, m_price: int, m_modifier_type: int, m_modifie
 	scene_path = m_scene_path
 	wear_position = m_wear_position
 	wearable = m_wearable
+	description = m_description
 	Globals.items.append(self)
 
 

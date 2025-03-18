@@ -7,7 +7,7 @@ class_name HealthPotion
 
 func _ready() -> void:
 	#fix positioning
-	constructor(get_node("."), 50, MODIFIER_TYPE.HEALTH, 0, Vector2(-9999, -9999), "res://items/health_potion.tscn", false)
+	constructor(get_node("."), 50, MODIFIER_TYPE.HEALTH, 0, Vector2(-9999, -9999), "res://items/health_potion.tscn", false, "")
 	#manager.global_modifiers[]
 	cat.health += 50
 	if cat.health > 100:

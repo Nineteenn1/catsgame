@@ -9,25 +9,29 @@ radius = 133.094
 
 [node name="Radiance" type="Sprite2D"]
 z_index = 4
-position = Vector2(785, 784)
+position = Vector2(513, 482)
 script = ExtResource("2_tcfck")
 
 [node name="collider" type="Area2D" parent="."]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collider"]
+visible = false
 position = Vector2(-143, -136)
 shape = SubResource("CircleShape2D_v7nne")
 
 [node name="effect" type="Sprite2D" parent="."]
-visible = false
 z_index = 2
-position = Vector2(-140, -143)
+position = Vector2(-12, 48)
 scale = Vector2(0.72, 0.72)
 texture = ExtResource("2_agnmd")
 
-[node name="shop_and_wear" type="Sprite2D" parent="."]
-position = Vector2(-6, -4)
+[node name="shop" type="Sprite2D" parent="."]
+position = Vector2(141, 183)
+texture = ExtResource("1_ncajv")
+
+[node name="wear" type="Sprite2D" parent="."]
+position = Vector2(141, 183)
 texture = ExtResource("1_ncajv")
 
 [connection signal="area_entered" from="collider" to="." method="_on_area_2d_area_entered"]

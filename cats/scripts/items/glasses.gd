@@ -6,7 +6,7 @@ class_name Glasses
 
 func _ready() -> void:
 	#fix positioning
-	constructor(get_node("."), 200, MODIFIER_TYPE.SIZE, 0.5, lefteye.position, "res://items/glasses.tscn", true)
+	constructor(get_node("."), 200, MODIFIER_TYPE.SIZE, 0.5, lefteye.position, "res://items/glasses.tscn", true, "skibidi sigma")
 	
 func buy():
 	money = get_tree().root.get_child(1).get_node("itemshop").money

@@ -13,13 +13,17 @@ var enemy_list = []
 
 func _ready() -> void:
 	#fix positioning
-	constructor(get_node("."), 0, MODIFIER_TYPE.RADIANCE, 0, Vector2(lefteye.position.x - 300, lefteye.position.y - 50), "res://items/radiance.tscn", true)
+	constructor(get_node("."), 0, MODIFIER_TYPE.RADIANCE, 0, Vector2(0, 0), "res://items/radiance.tscn", true, "")
 
 func _process(delta: float) -> void:
 	var frame_time = 1000 / Engine.get_frames_per_second() 
 	if doDamage:
-		attack(enemy, 5)
-		print("trigger")
+		for enemy in enemy_list:
+			if enemy.health > 0:
+				attack(enemy, 15/frame_time) # i have no enemies btw
+				print("attacked, ", enemy.name)
+			else:
+				enemy_list.remove_at(enemy)
 	if $collider and $effect:
 		$effect.set_visible(Globals.in_game)
 		$collider.set_visible(Globals.in_game)
@@ -28,8 +32,9 @@ func _process(delta: float) -> void:
 		
 func attack(entity, damage: int):
 	if area_ != null:
-		if entity in area_.get_overlapping_bodies() and entity.is_inside_tree():	
-			entity.takeDamage(damage)
+		if entity.is_inside_tree():
+			if entity.name == "rat" or "CharacterBody2D" == str(entity.name).left(15):
+				entity.takeDamage(damage)
 
 #check if useful
 func buy():
@@ -46,7 +51,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("enter")
 	doDamage = true
 	
-	enemy_list.append(area.get_parent())
+	if area.get_parent().name == "rat" or "CharacterBody2D" == str(area.get_parent().name).left(15):
+		enemy_list.append(area.get_parent())
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 #	doDamage = false

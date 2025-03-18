@@ -7,7 +7,7 @@ class_name WeaknessPotion
 
 func _ready() -> void:
 	#fix positioning
-	constructor(get_node("."), 0, MODIFIER_TYPE.ENEMY_DAMAGE, 0.75, Vector2(-9999, -9999), "res://items/weakness_potion.tscn", false)
+	constructor(get_node("."), 0, MODIFIER_TYPE.ENEMY_DAMAGE, 0.75, Vector2(-9999, -9999), "res://items/weakness_potion.tscn", false, "")
 
 	$Timer.start()
 	print("start")
