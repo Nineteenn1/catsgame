@@ -85,11 +85,7 @@ func _input(e: InputEvent) -> void:
 			bullet.mouse_position = bullet_mouse_position_copy
 			$global_timer.start()
 		# on collision
-	if Input.is_key_pressed(KEY_BACKSLASH):
-		var ribbon_scene = load("res://items/ribbon.tscn")
-		var ribbon = ribbon_scene.instantiate()
-		wear(ribbon, $ear2.position)
-		# health bar
+
 
 		
 			

@@ -4,10 +4,11 @@ class_name WeaknessPotion
 
 @onready var lefteye = get_tree().root.get_child(1).get_node("cat/lefteye")
 
+var _description = "The rats are weak. For now..."
 
 func _ready() -> void:
 	#fix positioning
-	constructor(get_node("."), 0, MODIFIER_TYPE.ENEMY_DAMAGE, 0.75, Vector2(-9999, -9999), "res://items/weakness_potion.tscn", false, "")
+	constructor(get_node("."), 0, MODIFIER_TYPE.ENEMY_DAMAGE, 0.75, Vector2(-9999, -9999), "res://items/weakness_potion.tscn", false, _description)
 
 	$Timer.start()
 	print("start")

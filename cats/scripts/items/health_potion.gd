@@ -4,10 +4,11 @@ class_name HealthPotion
 
 @onready var lefteye = get_tree().root.get_child(1).get_node("cat/lefteye")
 
+var _description = "I'm healthy once more!"
 
 func _ready() -> void:
 	#fix positioning
-	constructor(get_node("."), 50, MODIFIER_TYPE.HEALTH, 0, Vector2(-9999, -9999), "res://items/health_potion.tscn", false, "")
+	constructor(get_node("."), 50, MODIFIER_TYPE.HEALTH, 0, Vector2(-9999, -9999), "res://items/health_potion.tscn", false, _description)
 	#manager.global_modifiers[]
 	cat.health += 50
 	if cat.health > 100:

@@ -4,8 +4,10 @@ class_name Ribbon
 
 @onready var ear2 = get_tree().root.get_child(1).get_node("cat/ear2")
 
+var _description = "Damage increased by 30%. You feel pretty"
+
 func _ready() -> void:
-	constructor(get_node("."), 140, MODIFIER_TYPE.DAMAGE, 1.50, ear2.position, "res://items/ribbon.tscn", true, "")
+	constructor(get_node("."), 140, MODIFIER_TYPE.DAMAGE, 1.30, ear2.position, "res://items/ribbon.tscn", true, _description)
 	print(price)
 	
 func buy():

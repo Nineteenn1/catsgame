@@ -11,19 +11,21 @@ var ingame = false
 
 var enemy_list = []
 
+var _description = "You acquire a maximal aura. No mortal stands in your way."
+
 func _ready() -> void:
 	#fix positioning
-	constructor(get_node("."), 0, MODIFIER_TYPE.RADIANCE, 0, Vector2(0, 0), "res://items/radiance.tscn", true, "")
+	constructor(get_node("."), 0, MODIFIER_TYPE.RADIANCE, 0, Vector2(0, 0), "res://items/radiance.tscn", true, _description)
 
 func _process(delta: float) -> void:
 	var frame_time = 1000 / Engine.get_frames_per_second() 
 	if doDamage:
-		for enemy in enemy_list:
-			if enemy.health > 0:
+		for i in range(len(enemy_list)):
+			if enemy_list[i].health > 0:
 				attack(enemy, 15/frame_time) # i have no enemies btw
-				print("attacked, ", enemy.name)
+				print("attacked, ", enemy_list[i].name)
 			else:
-				enemy_list.remove_at(enemy)
+				enemy_list.remove_at(i)
 	if $collider and $effect:
 		$effect.set_visible(Globals.in_game)
 		$collider.set_visible(Globals.in_game)
@@ -32,9 +34,10 @@ func _process(delta: float) -> void:
 		
 func attack(entity, damage: int):
 	if area_ != null:
-		if entity.is_inside_tree():
-			if entity.name == "rat" or "CharacterBody2D" == str(entity.name).left(15):
-				entity.takeDamage(damage)
+		if entity != null:
+			if entity.is_inside_tree():
+				if entity.name == "rat" or "CharacterBody2D" == str(entity.name).left(15):
+					entity.takeDamage(damage)
 
 #check if useful
 func buy():
