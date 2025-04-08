@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://scripts/items/stick.gd" id="2_1phry"]
 
 [node name="Stick" type="Sprite2D"]
+z_index = 1
 position = Vector2(222, 175)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_pwjwv")
 script = ExtResource("2_1phry")

@@ -23,14 +23,14 @@ func _process(delta: float) -> void:
 		for i in range(len(enemy_list)):
 			if enemy_list[i].health > 0:
 				attack(enemy, 15/frame_time) # i have no enemies btw
-				print("attacked, ", enemy_list[i].name)
+				Globals.DEBUG_LOG("attacked %s" % enemy_list[i].name)
 			else:
 				enemy_list.remove_at(i)
 	if $collider and $effect:
 		$effect.set_visible(Globals.in_game)
 		$collider.set_visible(Globals.in_game)
 	
-	print(Globals.items)
+	Globals.DEBUG_LOG(Globals.items)
 		
 func attack(entity, damage: int):
 	if area_ != null:
@@ -51,7 +51,7 @@ func buy():
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("enter")
+	Globals.DEBUG_LOG("enter")
 	doDamage = true
 	
 	if area.get_parent().name == "rat" or "CharacterBody2D" == str(area.get_parent().name).left(15):

@@ -2,21 +2,36 @@ extends ItemBase
 
 class_name Stick
 
-@onready var lefteye = get_tree().root.get_child(1).get_node("cat/lefteye")
+@onready var nose = get_tree().root.get_child(1).get_node("cat/nose")
 
 var _description = "Teach them how to fly!"
 
 func _ready() -> void:
 	#fix positioning
-	constructor(get_node("."), 200, MODIFIER_TYPE.NONE, 0.0, lefteye.position, "res://items/glasses.tscn", true, _description)
+	constructor(get_node("."), 200, MODIFIER_TYPE.NONE, 0.0, nose.position, "res://items/stick.tscn", true, _description)
 	
 func _process(delta: float) -> void:
-	if Input.is_key_pressed(KEY_BACKSLASH):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		#attack()
-		pass
+		swing()
+	
 
 func swing():
-	pass
+	var i = 0
+	print(rotation_degrees)
+	if rotation_degrees >= 0 or rotation_degrees > -55:
+			while i >= -5:
+				i -= 5
+				rotation_degrees += i
+		
+	if rotation_degrees <= -55:
+			while i < 5:
+				i += 5
+				rotation_degrees += i
+		
+		#else:
+			#rotation_degrees -= i
+
 	#start at right and move to left creating an angle like look
 	#create such a collider immediately, if something is in it, deal damage
 	# remove it after half a second and reset the item.

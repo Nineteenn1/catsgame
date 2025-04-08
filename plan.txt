@@ -27,3 +27,4 @@ make it do damage, trigger, fix shop appearance --+
 fix items not working on retry --+
 
 make a more universal attack system later on
+add a confusion shot

@@ -1,0 +1,4 @@
+01.04.25
+wyklad o ai
+chatboty
+nauczylem sie dobrego promptowania, jak ai zbiera dane, jak sie uczy

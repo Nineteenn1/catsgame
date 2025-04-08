@@ -11,6 +11,8 @@ const xmax = 1000
 const ymin = 387
 const ymax = 990
 
+var follow = true
+
 #IF ERROR= (FIX ERROR)
 
 @onready var area = get_node("Area2D")
@@ -81,7 +83,6 @@ func die():
 func _process(delta: float) -> void:
 	cat_position = cat_node.get("position")
 	cat_velocity = cat_node.get("velocity")
-
 	$CanvasLayer/TextureProgressBar.position = Vector2(position.x - 65, position.y - 150)
 
 	attack(cat_node, 20)
@@ -92,7 +93,8 @@ func _process(delta: float) -> void:
 		die()
 
 func _physics_process(delta: float) -> void:
-	velocity = global_position.direction_to(cat_position) * SPEED
+	if follow:
+		velocity = global_position.direction_to(cat_position) * SPEED
 	
 	
 	#if not (position == cat_position):
@@ -106,11 +108,20 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if (area.name == "Area2D") or (area.name == "@CharacterBody2D@" + str(name_index)):
 		takeDamage(20)
+		follow = false
+		var i = -5
+		while i <= -1:
+			i += 2
+			velocity *= -i
+			#velocity = #-abs(velocity.y) * i
+			#velocity.x *= -i * area.get_parent().velocity.x * 0.005
+			
 		$CanvasLayer/TextureProgressBar.value = health
 		area.visible = false
 		#await get_tree().create_timer(1).timeout
 		area.queue_free()
 		name_index += 1
+	#follow = true
 
 
 func _on_timer_timeout() -> void:

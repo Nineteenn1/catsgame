@@ -14,7 +14,7 @@ var enemy_damage_modifier = 1
 
 func modifier_calc(TYPE: int, modifier):
 	global_modifiers[TYPE] += modifier
-	print(global_modifiers[TYPE])
+	Globals.DEBUG_LOG(global_modifiers[TYPE])
 
 
 var global_modifiers = [damage_modifier, health_modifier, 

@@ -53,14 +53,14 @@ func on_item_button_pressed(selected_index) -> void:
 func buy() -> void:
 	money = get_tree().root.get_child(1).get_node("itemshop").money
 	var item = Globals.items[selected_item_index]
-	print(Globals.items)
+	Globals.DEBUG_LOG(Globals.items)
 	var item_scene = load(item.scene_path)
 	var item_instance = item_scene.instantiate()
-	print(money)
+	Globals.DEBUG_LOG(money)
 	#if money >= item.price:
 	if true: #debug
 		get_tree().root.get_child(1).get_node("itemshop").money -= item.price
-		print(get_tree().root.get_child(1).get_node("itemshop").money)
+		Globals.DEBUG_LOG(get_tree().root.get_child(1).get_node("itemshop").money)
 		if wearable:
 			cat.wear(item_instance, wear_position)
 		manager.modifier_calc(item.modifier, item.modifier_diff)
