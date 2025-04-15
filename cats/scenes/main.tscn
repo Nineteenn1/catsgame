@@ -90,6 +90,9 @@ position = Vector2(137, -56)
 [node name="side" type="Node2D" parent="cat"]
 position = Vector2(101, -11)
 
+[node name="hold" type="Node2D" parent="cat"]
+position = Vector2(87, -94)
+
 [node name="rat" parent="." instance=ExtResource("3_rm5ar")]
 position = Vector2(42, 403)
 

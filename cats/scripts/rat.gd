@@ -15,7 +15,7 @@ var follow = true
 
 #IF ERROR= (FIX ERROR)
 
-@onready var area = get_node("Area2D")
+@onready var area = get_node("Area2D_")
 
 @onready var cat_node = get_parent().get_node("cat")
 
@@ -106,15 +106,16 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if (area.name == "Area2D") or (area.name == "@CharacterBody2D@" + str(name_index)):
+	if (area.name == "Area2D_bullet") or (area.name == "@CharacterBody2D@" + str(name_index)):
 		takeDamage(20)
-		follow = false
 		var i = -5
-		while i <= -1:
-			i += 2
-			velocity *= -i
-			#velocity = #-abs(velocity.y) * i
-			#velocity.x *= -i * area.get_parent().velocity.x * 0.005
+		if area.name == "Area2D_stick":
+			follow = false
+			while i <= -1:
+				i += 2
+				velocity *= -i
+				#velocity = #-abs(velocity.y) * i
+				#velocity.x *= -i * area.get_parent().velocity.x * 0.005
 			
 		$CanvasLayer/TextureProgressBar.value = health
 		area.visible = false

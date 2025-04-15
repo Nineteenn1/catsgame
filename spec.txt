@@ -2,3 +2,8 @@
 wyklad o ai
 chatboty
 nauczylem sie dobrego promptowania, jak ai zbiera dane, jak sie uczy
+
+15.04
+konsultacje
+mozna krecic patykiem
+proba dodania ataku patykiem

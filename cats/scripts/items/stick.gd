@@ -2,33 +2,46 @@ extends ItemBase
 
 class_name Stick
 
-@onready var nose = get_tree().root.get_child(1).get_node("cat/nose")
+@onready var hold = get_tree().root.get_child(1).get_node("cat/hold")
 
 var _description = "Teach them how to fly!"
 
+var left = true
+var right = false
+
+var active_attack = false
+
 func _ready() -> void:
 	#fix positioning
-	constructor(get_node("."), 200, MODIFIER_TYPE.NONE, 0.0, nose.position, "res://items/stick.tscn", true, _description)
+	constructor(get_node("."), 200, MODIFIER_TYPE.NONE, 0.0, hold.position, "res://items/stick.tscn", true, _description)
 	
 func _process(delta: float) -> void:
+	#if Input.is_action_just_pressed("STICK_ATTACK"):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		#attack()
+		active_attack = true
 		swing()
+		
+	active_attack = false
 	
 
 func swing():
-	var i = 0
-	print(rotation_degrees)
-	if rotation_degrees >= 0 or rotation_degrees > -55:
-			while i >= -5:
-				i -= 5
-				rotation_degrees += i
+	if left:
+		#for i in range(30):
+			rotation_degrees -= 7.4 / 2.5
 		
-	if rotation_degrees <= -55:
-			while i < 5:
-				i += 5
-				rotation_degrees += i
+
+	if right:
+		#for i in range(30):
+			rotation_degrees += 7.4 / 2.5
 		
+		
+	if rotation_degrees <= -137:
+		left = false
+		right = true
+	elif rotation_degrees >= 48:
+		right = false
+		left = true
 		#else:
 			#rotation_degrees -= i
 

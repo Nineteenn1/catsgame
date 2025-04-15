@@ -22,15 +22,15 @@ position = Vector2(2, -7)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_mub4r")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D_" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_"]
 z_index = 1
 position = Vector2(0, 3)
 rotation = -1.32388
 shape = SubResource("CapsuleShape2D_pmtmo")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D/CollisionShape2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D_/CollisionShape2D"]
 position = Vector2(48.0719, 22.4103)
 rotation = 0.652608
 shape = SubResource("RectangleShape2D_yqi41")
@@ -51,6 +51,6 @@ texture_progress = ExtResource("4_nlu8p")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.616
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Area2D_" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D_" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

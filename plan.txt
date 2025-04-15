@@ -28,3 +28,11 @@ fix items not working on retry --+
 
 make a more universal attack system later on
 add a confusion shot
+
+bigger levels
+maybe clone isaac?
+animations
+
+NEXT FOCUS:
+Make stick work, maybe attack on click?
+cat animation
