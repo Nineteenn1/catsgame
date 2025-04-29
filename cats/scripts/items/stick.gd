@@ -15,33 +15,37 @@ func _ready() -> void:
 	#fix positioning
 	constructor(get_node("."), 200, MODIFIER_TYPE.NONE, 0.0, hold.position, "res://items/stick.tscn", true, _description)
 	
+var i = 1
 func _process(delta: float) -> void:
 	#if Input.is_action_just_pressed("STICK_ATTACK"):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		#attack()
 		active_attack = true
+		#for i in range(42):
 		swing()
+		print("swing", i)
+		i+= 1
 		
 	active_attack = false
 	
 
 func swing():
 	if left:
-		#for i in range(30):
-			rotation_degrees -= 7.4 / 2.5
+		rotation_degrees -= 7.4 * 1.5 / 2.5
 		
 
 	if right:
-		#for i in range(30):
-			rotation_degrees += 7.4 / 2.5
+		rotation_degrees += 7.4  * 1.5 / 2.5
 		
 		
 	if rotation_degrees <= -137:
 		left = false
 		right = true
+		print("done", i)
 	elif rotation_degrees >= 48:
 		right = false
 		left = true
+		print("done", i)
 		#else:
 			#rotation_degrees -= i
 
