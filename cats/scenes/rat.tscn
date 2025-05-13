@@ -38,6 +38,7 @@ shape = SubResource("RectangleShape2D_yqi41")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+z_index = -2
 offset_left = 569.0
 offset_top = 287.0
 offset_right = 825.0

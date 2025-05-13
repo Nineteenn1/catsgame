@@ -31,6 +31,8 @@ var money = 0
 
 var attack_timeout = true
 
+var rats = []
+
 func attack(entity, damage: int):
 	if area != null:
 		if entity in area.get_overlapping_bodies() and entity.is_inside_tree():	
@@ -58,6 +60,7 @@ func _ready():
 	else: 
 		newPos = Vector2(randi_range(xmin, xmax), randi_range(ymin, ymax))
 		position = newPos
+	rats.append(self)
 #func removeEntities():
 #	for i in entities:
 	#	entities[i].queue_free()

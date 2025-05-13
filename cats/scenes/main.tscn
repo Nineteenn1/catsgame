@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://igp5jqddcu7p"]
+[gd_scene load_steps=27 format=3 uid="uid://igp5jqddcu7p"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_04exy"]
 [ext_resource type="Script" path="res://scripts/cat.gd" id="1_mi3io"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://vqqbyf0spiy5" path="res://gfx/close.png" id="7_43cpm"]
 [ext_resource type="Texture2D" uid="uid://b5k4cibjlhlkr" path="res://gfx/bg.png" id="7_pqkms"]
 [ext_resource type="PackedScene" uid="uid://dqog4c8x51tmi" path="res://items/ribbon.tscn" id="8_3me5c"]
+[ext_resource type="Texture2D" uid="uid://coubdsmfeay8k" path="res://gfx/stick.png" id="9_cmwc3"]
 [ext_resource type="PackedScene" uid="uid://3g8jmqho5xlv" path="res://items/glasses.tscn" id="11_5gt2r"]
 [ext_resource type="Script" path="res://scripts/item_base.gd" id="11_ltlpe"]
 [ext_resource type="PackedScene" uid="uid://dbv4uoq28if88" path="res://items/health_potion.tscn" id="12_bj7nd"]
@@ -137,7 +138,6 @@ offset_bottom = 465.0
 text = "Kocham cię"
 
 [node name="itemshop" type="Node2D" parent="."]
-visible = false
 script = ExtResource("5_5udvn")
 
 [node name="menu" type="Sprite2D" parent="itemshop"]
@@ -242,6 +242,11 @@ offset_top = 359.0
 offset_right = -245.0
 offset_bottom = 382.0
 
+[node name="Stick" type="Sprite2D" parent="itemshop/menu"]
+position = Vector2(-112, 175)
+scale = Vector2(2, 2)
+texture = ExtResource("9_cmwc3")
+
 [node name="Ribbon2" parent="itemshop" instance=ExtResource("8_3me5c")]
 position = Vector2(167, 465)
 
@@ -279,6 +284,7 @@ position = Vector2(182, 647)
 scale = Vector2(0.56, 0.56)
 
 [node name="Stick" parent="itemshop" instance=ExtResource("15_hx6c2")]
+visible = false
 z_index = 12
 position = Vector2(401, 675)
 

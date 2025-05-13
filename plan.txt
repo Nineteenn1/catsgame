@@ -37,3 +37,5 @@ NEXT FOCUS:
 Make stick work, maybe attack on click?
 cat animation
 immunity for 2 seconds after closing shop
+
+item that heals 10hp after each kill

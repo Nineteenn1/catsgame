@@ -11,6 +11,8 @@ var right = false
 
 var active_attack = false
 
+#var in_game = false
+
 func _ready() -> void:
 	#fix positioning
 	constructor(get_node("."), 200, MODIFIER_TYPE.NONE, 0.0, hold.position, "res://items/stick.tscn", true, _description)
@@ -19,6 +21,7 @@ var i = 1
 func _process(delta: float) -> void:
 	#if Input.is_action_just_pressed("STICK_ATTACK"):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		#if in_game:
 		#attack()
 		active_attack = true
 		#for i in range(42):
