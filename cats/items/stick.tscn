@@ -1,10 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbph2xatbw46d"]
+[gd_scene load_steps=8 format=3 uid="uid://cbph2xatbw46d"]
 
 [ext_resource type="Texture2D" uid="uid://coubdsmfeay8k" path="res://gfx/stick.png" id="1_pwjwv"]
 [ext_resource type="Script" path="res://scripts/items/stick.gd" id="2_1phry"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63es7"]
 size = Vector2(81.5418, 14.4037)
+
+[sub_resource type="Animation" id="Animation_mufhe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ue8vr"]
+resource_name = "attack_1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.67007]
+}
+
+[sub_resource type="Animation" id="Animation_68xq7"]
+resource_name = "attack_2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.67007, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7h5l4"]
+_data = {
+"RESET": SubResource("Animation_mufhe"),
+"attack_1": SubResource("Animation_ue8vr"),
+"attack_2": SubResource("Animation_68xq7")
+}
 
 [node name="Stick" type="Sprite2D"]
 z_index = 1
@@ -19,3 +73,10 @@ script = ExtResource("2_1phry")
 position = Vector2(-0.589165, -0.509583)
 rotation = -0.724312
 shape = SubResource("RectangleShape2D_63es7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7h5l4")
+}
+
+[connection signal="area_entered" from="Area2D_stick" to="." method="_on_area_2d_stick_area_entered"]

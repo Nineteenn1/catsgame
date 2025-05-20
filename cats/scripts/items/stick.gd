@@ -23,11 +23,9 @@ func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		#if in_game:
 		#attack()
+		swing()
 		active_attack = true
 		#for i in range(42):
-		swing()
-		print("swing", i)
-		i+= 1
 		
 	active_attack = false
 	
@@ -70,3 +68,12 @@ func attack(entity, damage, knockback):
 		entity.velocity *= -i
 	
 	#make a more universal system later
+	
+
+
+
+func _on_area_2d_stick_area_entered(area: Area2D) -> void:
+	if area.name == "Area2D_" and active_attack:
+		area.get_parent().follow = false
+		area.get_parent().velocity *= -5
+		print("a")
